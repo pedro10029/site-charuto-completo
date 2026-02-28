@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charutos Online - Loja Especializada</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>CHARUTOS<span>ONLINE</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#ofertas">Ofertas</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <a href="#" id="loginBtn" class="icon-link">🔑</a>
+                    <a href="#carrinho" class="icon-link" id="carrinhoIcon">🛒 <span id="carrinhoCount">0</span></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="E-mail" required>
+                <input type="password" id="password" placeholder="Senha" required>
+                <button type="submit" class="btn-modal">Entrar</button>
+            </form>
+            <p class="demo-user">Demo: cliente@email.com / 123456</p>
+        </div>
+    </div>
+
+    <main>
+        <!-- Banner Hero -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Os melhores charutos</h2>
+                    <p>Seleção exclusiva dos melhores charutos cubanos e importados</p>
+                    <a href="#produtos" class="btn-hero">VER PRODUTOS</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABAS ANIMADAS (Estilo Charutos Online) -->
+        <section class="abas-section">
+            <div class="container">
+                <div class="abas-nav">
+                    <button class="aba-link active" onclick="mudarAba('produtos')" data-aba="produtos">
+                        <span class="aba-icone">📋</span>
+                        <span class="aba-texto">PRODUTOS</span>
+                    </button>
+                    <button class="aba-link" onclick="mudarAba('ofertas')" data-aba="ofertas">
+                        <span class="aba-icone">🔥</span>
+                        <span class="aba-texto">OFERTAS</span>
+                    </button>
+                    <button class="aba-link" onclick="mudarAba('carrinho')" data-aba="carrinho">
+                        <span class="aba-icone">🛒</span>
+                        <span class="aba-texto">CARRINHO</span>
+                    </button>
+                    <button class="aba-link" onclick="mudarAba('pedidos')" data-aba="pedidos">
+                        <span class="aba-icone">📦</span>
+                        <span class="aba-texto">MEUS PEDIDOS</span>
+                    </button>
+                </div>
+
+                <div class="abas-content">
+                    <!-- ABA PRODUTOS -->
+                    <div id="aba-produtos" class="aba-painel active">
+                        <div class="produtos-grid" id="produtosContainer"></div>
+                    </div>
+
+                    <!-- ABA OFERTAS -->
+                    <div id="aba-ofertas" class="aba-painel">
+                        <div class="ofertas-grid" id="ofertasContainer"></div>
+                    </div>
+
+                    <!-- ABA CARRINHO -->
+                    <div id="aba-carrinho" class="aba-painel">
+                        <div class="carrinho-container">
+                            <div id="carrinhoItems" class="carrinho-lista"></div>
+                            
+                            <div class="carrinho-resumo">
+                                <div class="frete-calculator">
+                                    <h3>Calcular Frete</h3>
+                                    <div class="frete-input-group">
+                                        <input type="text" id="cep" placeholder="Digite seu CEP" maxlength="8">
+                                        <button class="btn-calcular" onclick="calcularFrete()">OK</button>
+                                    </div>
+                                    <div id="freteResultado" class="frete-resultado"></div>
+                                </div>
+
+                                <div class="carrinho-total">
+                                    <div class="total-linha">
+                                        <span>Subtotal:</span>
+                                        <span id="carrinhoSubtotal">R$ 0,00</span>
+                                    </div>
+                                    <div class="total-linha">
+                                        <span>Frete:</span>
+                                        <span id="freteValor">R$ 0,00</span>
+                                    </div>
+                                    <div class="total-linha total-geral">
+                                        <span>Total:</span>
+                                        <span id="carrinhoTotal">R$ 0,00</span>
+                                    </div>
+                                </div>
+
+                                <button class="btn-pix" onclick="iniciarPagamentoPIX()">
+                                    <span class="pix-icon">💳</span>
+                                    FINALIZAR COM PIX
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ABA PEDIDOS -->
+                    <div id="aba-pedidos" class="aba-painel">
+                        <div class="pedidos-container" id="pedidosContainer">
+                            <p class="sem-pedidos">Nenhum pedido encontrado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL PIX (Animado) -->
+    <div id="pixModal" class="modal">
+        <div class="modal-content modal-pix">
+            <span class="close" onclick="fecharModalPIX()">&times;</span>
+            <h2>Pagamento via PIX</h2>
+            
+            <div class="pix-status" id="pixStatus">
+                <div class="status-indicator">⏳</div>
+                <span>Aguardando pagamento</span>
+            </div>
+
+            <div class="pix-container">
+                <!-- QR Code Animado -->
+                <div class="qrcode-wrapper">
+                    <div class="qrcode-border pulse">
+                        <div class="qrcode" id="qrcode">
+                            <!-- QR Code será gerado via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timer e Chave PIX -->
+                <div class="pix-info">
+                    <div class="pix-timer">
+                        <span class="timer-label">Tempo restante:</span>
+                        <span class="timer" id="pixTimer">15:00</span>
+                    </div>
+
+                    <div class="pix-chave">
+                        <p>Chave PIX (copia e cola):</p>
+                        <div class="chave-container">
+                            <code id="pixCopiaCola">00020126580014BR.GOV.BCB.PIX0136123e4567-e89b-12d3-a456-426614174000</code>
+                            <button class="btn-copiar" onclick="copiarChavePIX()">📋 COPIAR</button>
+                        </div>
+                    </div>
+
+                    <div class="pix-valor">
+                        <span>Valor:</span>
+                        <strong id="pixValor">R$ 0,00</strong>
+                    </div>
+
+                    <button class="btn-confirmar" onclick="verificarPagamentoPIX()">
+                        JÁ PAGUEI - VERIFICAR
+                    </button>
+
+                    <p class="pix-aviso">
+                        ⚠️ Após o pagamento, a confirmação pode levar alguns minutos
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL COMPRA FINALIZADA (Animado) -->
+    <div id="compraFinalizadaModal" class="modal">
+        <div class="modal-content modal-sucesso">
+            <div class="sucesso-animado">
+                <div class="checkmark-circle">
+                    <div class="checkmark draw"></div>
+                </div>
+                <h2>PAGAMENTO CONFIRMADO!</h2>
+                <p>Seu pedido foi processado com sucesso.</p>
+                <div class="pedido-info" id="pedidoInfo"></div>
+                <button class="btn-modal" onclick="verPedidos()">VER MEUS PEDIDOS</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL VERIFICAÇÃO (Simula verificação) -->
+    <div id="verificandoModal" class="modal">
+        <div class="modal-content modal-verificando">
+            <div class="loading-spinner"></div>
+            <h3>Verificando pagamento...</h3>
+            <p>Isso pode levar alguns segundos</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Charutos Online</h4>
+                    <p>Desde 2010 levando excelência</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#produtos">Produtos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

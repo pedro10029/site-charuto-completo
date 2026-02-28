@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Casa del Habano - Charutos e Acessórios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8B4513, #5D2E1C);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .search-bar {
+            flex: 0.4;
+            display: flex;
+            min-width: 300px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 25px 0 0 25px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 0.8rem 1.5rem;
+            background: #DAA520;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .search-bar button:hover {
+            background: #B8860B;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .user-actions i {
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .user-actions i:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #DAA520;
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #3E2C1B;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        .nav-container a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-container a:hover {
+            background: #DAA520;
+            transform: translateY(-2px);
+        }
+
+        .nav-container a.active {
+            background: #DAA520;
+            box-shadow: 0 2px 8px rgba(218, 165, 32, 0.3);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M20 20 L80 20 L80 80 L20 80 Z" fill="none" stroke="%23DAA520" stroke-width="2"/><circle cx="50" cy="50" r="15" fill="none" stroke="%23DAA520" stroke-width="2"/></svg>');
+            background-size: 50px;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .banner-content p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Products Grid */
+        .products-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #3E2C1B;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #8B4513;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(139, 69, 19, 0.2);
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 15px;
+            box-shadow: 0 0 0 2px rgba(218, 165, 32, 0);
+            transition: box-shadow 0.3s ease;
+            pointer-events: none;
+        }
+
+        .product-card:hover::after {
+            box-shadow: 0 0 0 2px rgba(218, 165, 32, 0.5);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            position: relative;
+            background: white;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: -12px;
+            left: 1.5rem;
+            background: #DAA520;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #3E2C1B;
+            margin: 0.5rem 0 0.5rem;
+            line-height: 1.4;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8B4513;
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            color: #DAA520;
+            margin-bottom: 1rem;
+        }
+
+        .product-rating span {
+            color: #666;
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: #8B4513;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart:hover {
+            background: #5D2E1C;
+            transform: scale(1.02);
+        }
+
+        .add-to-cart:active {
+            transform: scale(0.98);
+        }
+
+        /* Categories Section */
+        .categories-section {
+            margin: 3rem 0;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #8B4513, #5D2E1C);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .category-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 2rem;
+            border-radius: 20px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #8B4513;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            gap: 1rem;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            color: #3E2C1B;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-price {
+            color: #8B4513;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quantity-btn {
+            background: #f0f0f0;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: #8B4513;
+            color: white;
+        }
+
+        .remove-item {
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .remove-item:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #3E2C1B;
+            margin: 1.5rem 0;
+            padding-top: 1rem;
+            border-top: 2px solid #DAA520;
+        }
+
+        /* Delivery Form */
+        .delivery-form {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #3E2C1B;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-title i {
+            color: #DAA520;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #DAA520;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Payment Section */
+        .payment-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .payment-option:hover {
+            border-color: #DAA520;
+        }
+
+        .payment-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #8B4513;
+        }
+
+        .payment-option span {
+            font-weight: 500;
+        }
+
+        .pix-container {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            border: 2px dashed #8B4513;
+        }
+
+        .pix-qr {
+            width: 250px;
+            height: 250px;
+            margin: 1.5rem auto;
+            background: linear-gradient(45deg, #f0f0f0, #ffffff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #8B4513;
+            border-radius: 20px;
+            padding: 1rem;
+        }
+
+        .pix-qr i {
+            font-size: 5rem;
+            color: #8B4513;
+            margin-bottom: 1rem;
+        }
+
+        .pix-code {
+            background: #f5f5f5;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            margin: 1.5rem 0;
+            word-break: break-all;
+            border: 1px solid #e0e0e0;
+        }
+
+        .copy-btn {
+            background: #8B4513;
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: #5D2E1C;
+            transform: scale(1.05);
+        }
+
+        .finish-order-btn {
+            background: #DAA520;
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .finish-order-btn:hover {
+            background: #B8860B;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(218, 165, 32, 0.3);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: none;
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #8B4513;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .banner-content h2 {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 20px;
+                padding: 1rem;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cart-item img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>La Casa del Habano</h1>
+                <p>Os melhores charutos e acessórios cubanos</p>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar produtos...">
+                <button onclick="searchProducts()"><i class="fas fa-search"></i> Buscar</button>
+            </div>
+            <div class="user-actions">
+                <i class="fas fa-user" onclick="showLoginPrompt()"></i>
+                <div class="cart-icon" onclick="openCartModal()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container" id="navTabs">
+            <a class="active" onclick="switchTab('inicio')">Início</a>
+            <a onclick="switchTab('cubanos')">Cubanos</a>
+            <a onclick="switchTab('dominicanos')">Dominicanos</a>
+            <a onclick="switchTab('nicaraguenses')">Nicaraguenses</a>
+            <a onclick="switchTab('acessorios')">Acessórios</a>
+            <a onclick="switchTab('ofertas')">Ofertas</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Banner (visible only on home) -->
+        <div id="homeBanner" class="banner">
+            <div class="banner-content">
+                <h2>Experiência Cubana</h2>
+                <p>Os melhores charutos premium e acessórios de luxo</p>
+            </div>
+        </div>
+
+        <!-- Categories Section (visible only on home) -->
+        <div id="homeCategories" class="categories-section">
+            <h2 class="section-title">Categorias</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="switchTab('cubanos')">
+                    <i class="fas fa-crown"></i>
+                    <h3>Cubanos</h3>
+                    <p>Os verdadeiros habanos</p>
+                </div>
+                <div class="category-card" onclick="switchTab('dominicanos')">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Dominicanos</h3>
+                    <p>Sabor caribenho</p>
+                </div>
+                <div class="category-card" onclick="switchTab('nicaraguenses')">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Nicaraguenses</h3>
+                    <p>Força e caráter</p>
+                </div>
+                <div class="category-card" onclick="switchTab('acessorios')">
+                    <i class="fas fa-tools"></i>
+                    <h3>Acessórios</h3>
+                    <p>Para sua experiência</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <div class="products-section">
+            <h2 class="section-title" id="productsTitle">Nossos Produtos</h2>
+            <div class="section-subtitle" id="productsSubtitle">Os melhores charutos selecionados para você</div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCartModal()">&times;</span>
+            <h2 style="color: #3E2C1B; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                <i class="fas fa-shopping-cart"></i> Seu Carrinho
+            </h2>
+            
+            <div id="cartItems">
+                <!-- Cart items will be loaded here -->
+            </div>
+
+            <div class="cart-total" id="cartTotal">
+                Total: R$ 0,00
+            </div>
+
+            <!-- Delivery Form -->
+            <div class="delivery-form">
+                <h3 class="form-title">
+                    <i class="fas fa-truck"></i> Informações de Entrega
+                </h3>
+                <form id="deliveryForm">
+                    <div class="form-group">
+                        <label>Nome Completo *</label>
+                        <input type="text" id="fullName" placeholder="Digite seu nome completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="email" placeholder="exemplo@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefone *</label>
+                        <input type="tel" id="phone" placeholder="(11) 99999-9999" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>CEP *</label>
+                        <input type="text" id="cep" placeholder="00000-000" onblur="buscarCEP()" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Endereço *</label>
+                        <input type="text" id="address" placeholder="Rua, Avenida..." required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Número *</label>
+                            <input type="text" id="number" placeholder="123" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Complemento</label>
+                            <input type="text" id="complement" placeholder="Apto, Bloco...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Bairro *</label>
+                            <input type="text" id="neighborhood" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Cidade *</label>
+                            <input type="text" id="city" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estado *</label>
+                        <select id="state" required>
+                            <option value="">Selecione um estado</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Observações para entrega</label>
+                        <textarea id="deliveryNotes" rows="3" placeholder="Horário de preferência, ponto de referência..."></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Payment Section -->
+            <div class="payment-section">
+                <h3 class="form-title">
+                    <i class="fas fa-credit-card"></i> Forma de Pagamento
+                </h3>
+                
+                <div class="payment-options">
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="pix" checked onchange="togglePaymentMethod('pix')">
+                        <i class="fas fa-qrcode"></i>
+                        <span>PIX</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="credit" onchange="togglePaymentMethod('credit')">
+                        <i class="fas fa-credit-card"></i>
+                        <span>Cartão de Crédito</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="boleto" onchange="togglePaymentMethod('boleto')">
+                        <i class="fas fa-barcode"></i>
+                        <span>Boleto</span>
+                    </label>
+                </div>
+
+                <!-- PIX Payment -->
+                <div id="pixPayment" class="pix-container">
+                    <h4 style="margin-bottom: 1rem;">Pagamento via PIX</h4>
+                    <p style="color: #666; margin-bottom: 1rem;">Escaneie o QR Code ou copie o código PIX abaixo:</p>
+                    
+                    <div class="pix-qr">
+                        <i class="fas fa-qrcode"></i>
+                        <span style="font-weight: 600; color: #8B4513;">QR CODE PIX</span>
+                        <span style="font-size: 0.8rem; margin-top: 0.5rem;">Clique para ampliar</span>
+                    </div>
+
+                    <div class="pix-code" id="pixCode">
+                        00020126580014br.gov.bcb.pix0136a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t05204000053039865802BR5913LA CASA HABANO6008BRASILIA62070503***6304E3F2
+                    </div>
+
+                    <button class="copy-btn" onclick="copyPixCode()">
+                        <i class="far fa-copy"></i> Copiar código PIX
+                    </button>
+                    <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                        <i class="fas fa-clock"></i> O código expira em 30 minutos
+                    </p>
+                </div>
+
+                <!-- Credit Card Payment -->
+                <div id="creditPayment" style="display: none;">
+                    <div class="form-group">
+                        <label>Número do Cartão</label>
+                        <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Validade</label>
+                            <input type="text" placeholder="MM/AA" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="text" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nome no Cartão</label>
+                        <input type="text" placeholder="Como está no cartão">
+                    </div>
+                    <div class="form-group">
+                        <label>CPF do Titular</label>
+                        <input type="text" placeholder="000.000.000-00">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Parcelas</label>
+                        <select id="installments">
+                            <option>1x sem juros</option>
+                            <option>2x sem juros</option>
+                            <option>3x sem juros</option>
+                            <option>4x com juros</option>
+                            <option>5x com juros</option>
+                            <option>6x com juros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Boleto Payment -->
+                <div id="boletoPayment" style="display: none;">
+                    <div class="pix-container">
+                        <i class="fas fa-barcode" style="font-size: 4rem; color: #8B4513; margin-bottom: 1rem;"></i>
+                        <h4 style="margin-bottom: 1rem;">Pagamento via Boleto Bancário</h4>
+                        <p style="color: #666; margin-bottom: 1rem;">Após finalizar o pedido, você receberá o boleto por email.</p>
+                        <div style="background: #f5f5f5; padding: 1rem; border-radius: 10px; margin: 1rem 0;">
+                            <p><strong>Vencimento:</strong> 3 dias úteis</p>
+                            <p><strong>Processamento:</strong> 1-2 dias úteis</p>
+                        </div>
+                        <button class="copy-btn" style="background: #2E7D32;">
+                            <i class="far fa-file-pdf"></i> Gerar Boleto
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="finish-order-btn" onclick="finishOrder()">
+                <i class="fas fa-check-circle"></i> Finalizar Pedido
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Expanded product data with more items and accessories
+        const products = {
+            cubanos: [
+                {
+                    id: 1,
+                    name: "Cohiba Behike BHK 52",
+                    description: "O charuto mais exclusivo de Cuba. Edição limitada com sabor intenso e complexo.",
+                    price: 1850.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5,
+                    badge: "Edição Limitada"
+                },
+                {
+                    id: 2,
+                    name: "Montecristo No. 2",
+                    description: "Clássico Piramide, sabor equilibrado com notas de madeira e café.",
+                    price: 520.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5
+                },
+                {
+                    id: 3,
+                    name: "Partagás Serie D No. 4",
+                    description: "Robusto encorpado, favorito dos apreciadores mais experientes.",
+                    price: 480.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                },
+                {
+                    id: 4,
+                    name: "Romeo y Julieta Wide Churchills",
+                    description: "Suave e aromático, ideal para momentos especiais e presentear.",
+                    price: 445.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                },
+                {
+                    id: 5,
+                    name: "H. Upmann Magnum 50",
+                    description: "Sabor refinado com notas de madeira, especiarias e couro.",
+                    price: 498.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5
+                },
+                {
+                    id: 6,
+                    name: "Bolívar Belicosos Finos",
+                    description: "Intenso e picante, para paladares experientes e exigentes.",
+                    price: 467.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                },
+                {
+                    id: 7,
+                    name: "Trinidad Fundadores",
+                    description: "Formato exclusivo, sabor suave e aromático com final doce.",
+                    price: 650.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5,
+                    badge: "Premium"
+                },
+                {
+                    id: 8,
+                    name: "Punch Punch Punch",
+                    description: "Equilibrado e complexo, com notas terrosas e picantes.",
+                    price: 390.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                }
+            ],
+            dominicanos: [
+                {
+                    id: 9,
+                    name: "Arturo Fuente Opus X",
+                    description: "O lendário dominicano, sabor complexo e aroma inconfundível.",
+                    price: 780.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5,
+                    badge: "Lendário"
+                },
+                {
+                    id: 10,
+                    name: "Davidoff Nicaragua",
+                    description: "Força equilibrada com notas de cacau e especiarias.",
+                    price: 420.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                },
+                {
+                    id: 11,
+                    name: "Ashton VSG",
+                    description: "Encorpado e picante, capa equatoriana exclusiva.",
+                    price: 350.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                },
+                {
+                    id: 12,
+                    name: "Macanudo Inspirado",
+                    description: "Suave e aromático, perfeito para iniciantes.",
+                    price: 280.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 3
+                }
+            ],
+            nicaraguenses: [
+                {
+                    id: 13,
+                    name: "Padrón 1964 Anniversary",
+                    description: "Excepcional, envelhecido por 4 anos, sabor inigualável.",
+                    price: 890.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5,
+                    badge: "Edição Especial"
+                },
+                {
+                    id: 14,
+                    name: "Oliva Serie V Melanio",
+                    description: "Premiado, com notas de chocolate e café.",
+                    price: 380.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5
+                },
+                {
+                    id: 15,
+                    name: "My Father Le Bijou 1922",
+                    description: "Encorpado e complexo, blend exclusivo.",
+                    price: 320.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                }
+            ],
+            acessorios: [
+                {
+                    id: 16,
+                    name: "Umidificador Elite 100",
+                    description: "Umidificador de luxo para 100 charutos, cedro espanhol.",
+                    price: 1250.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5,
+                    badge: "Luxo"
+                },
+                {
+                    id: 17,
+                    name: "Cortador Duplo Guilhotina",
+                    description: "Aço inoxidável, lâminas alemãs precisas.",
+                    price: 180.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                },
+                {
+                    id: 18,
+                    name: "Isqueiro Triplo Chama",
+                    description: "Isqueiro a jato com cortador integrado.",
+                    price: 150.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                },
+                {
+                    id: 19,
+                    name: "Estojo de Viagem",
+                    description: "Couro legítimo, proteção para 3 charutos.",
+                    price: 220.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                },
+                {
+                    id: 20,
+                    name: "Cinzeiro de Cristal",
+                    description: "Cristal tcheco, design clássico com repouso.",
+                    price: 350.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5
+                },
+                {
+                    id: 21,
+                    name: "Higrômetro Digital",
+                    description: "Precisão suíça, monitoramento em tempo real.",
+                    price: 95.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                },
+                {
+                    id: 22,
+                    name: "Kit de Manutenção",
+                    description: "Escova, palitos e pinça de cedro.",
+                    price: 75.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 4
+                },
+                {
+                    id: 23,
+                    name: "Luvas de Corte",
+                    description: "Algodão egípcio, para manuseio adequado.",
+                    price: 65.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 3
+                }
+            ],
+            ofertas: [
+                {
+                    id: 24,
+                    name: "Combo Iniciante",
+                    description: "3 charutos selecionados + cortador + estojo - 20% OFF",
+                    price: 520.00,
+                    originalPrice: 650.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5,
+                    badge: "20% OFF"
+                },
+                {
+                    id: 25,
+                    name: "Kit Umidificado",
+                    description: "Umidificador pequeno + 5 charutos premium",
+                    price: 890.00,
+                    originalPrice: 1100.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5,
+                    badge: "19% OFF"
+                },
+                {
+                    id: 26,
+                    name: "Seleção do Mestre",
+                    description: "6 charutos exclusivos de diferentes regiões",
+                    price: 950.00,
+                    originalPrice: 1200.00,
+                    image: "https://images.unsplash.com/photo-1616234422822-8495d76d5c1f?auto=format&fit=crop&w=400&q=80",
+                    rating: 5,
+                    badge: "21% OFF"
+                }
+            ]
+        };
+
+        // Cart array
+        let cart = [];
+        let currentTab = 'inicio';
+
+        // Load products based on current tab
+        function loadProducts() {
+            const grid = document.getElementById('productsGrid');
+            const title = document.getElementById('productsTitle');
+            const subtitle = document.getElementById('productsSubtitle');
+            
+            grid.innerHTML = '';
+            
+            let productsToShow = [];
+            let categoryTitle = '';
+            let categorySubtitle = '';
+
+            switch(currentTab) {
+                case 'inicio':
+                    productsToShow = [...products.cubanos.slice(0, 4), ...products.acessorios.slice(0, 2)];
+                    categoryTitle = 'Produtos em Destaque';
+                    categorySubtitle = 'Os mais vendidos e recomendados';
+                    break;
+                case 'cubanos':
+                    productsToShow = products.cubanos;
+                    categoryTitle = 'Charutos Cubanos';
+                    categorySubtitle = 'Os verdadeiros habanos, direto de Cuba';
+                    break;
+                case 'dominicanos':
+                    productsToShow = products.dominicanos;
+                    categoryTitle = 'Charutos Dominicanos';
+                    categorySubtitle = 'Sabor caribenho com qualidade superior';
+                    break;
+                case 'nicaraguenses':
+                    productsToShow = products.nicaraguenses;
+                    categoryTitle = 'Charutos Nicaraguenses';
+                    categorySubtitle = 'Força e personalidade únicas';
+                    break;
+                case 'acessorios':
+                    productsToShow = products.acessorios;
+                    categoryTitle = 'Acessórios Premium';
+                    categorySubtitle = 'Tudo para sua experiência com charutos';
+                    break;
+                case 'ofertas':
+                    productsToShow = products.ofertas;
+                    categoryTitle = 'Ofertas Especiais';
+                    categorySubtitle = 'Combos e kits com preços imperdíveis';
+                    break;
+            }
+
+            title.textContent = categoryTitle;
+            subtitle.textContent = categorySubtitle;
+
+            productsToShow.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                let badgeHtml = '';
+                if (product.badge) {
+                    badgeHtml = `<div class="product-badge">${product.badge}</div>`;
+                }
+                
+                let ratingHtml = '';
+                if (product.rating) {
+                    ratingHtml = '<div class="product-rating">';
+                    for (let i = 0; i < 5; i++) {
+                        if (i < product.rating) {
+                            ratingHtml += '<i class="fas fa-star"></i>';
+                        } else {
+                            ratingHtml += '<i class="far fa-star"></i>';
+                        }
+                    }
+                    ratingHtml += `<span>(${product.rating})</span></div>`;
+                }
+
+                let priceHtml = '';
+                if (product.originalPrice) {
+                    priceHtml = `
+                        <div class="product-price">
+                            <span style="text-decoration: line-through; color: #999; font-size: 1rem;">R$ ${product.originalPrice.toFixed(2)}</span>
+                            <br>R$ ${product.price.toFixed(2)}
+                        </div>
+                    `;
+                } else {
+                    priceHtml = `<div class="product-price">R$ ${product.price.toFixed(2)}</div>`;
+                }
+
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        ${badgeHtml}
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-description">${product.description}</div>
+                        ${ratingHtml}
+                        ${priceHtml}
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Switch between tabs
+        function switchTab(tab) {
+            currentTab = tab;
+            
+            // Update active tab styling
+            document.querySelectorAll('.nav-container a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Show/hide home elements
+            const banner = document.getElementById('homeBanner');
+            const categories = document.getElementById('homeCategories');
+            
+            if (tab === 'inicio') {
+                banner.style.display = 'flex';
+                categories.style.display = 'block';
+            } else {
+                banner.style.display = 'none';
+                categories.style.display = 'none';
+            }
+
+            // Load products for this tab
+            loadProducts();
+        }
+
+        // Search products
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            if (!searchTerm) {
+                loadProducts();
+                return;
+            }
+
+            const allProducts = [
+                ...products.cubanos,
+                ...products.dominicanos,
+                ...products.nicaraguenses,
+                ...products.acessorios,
+                ...products.ofertas
+            ];
+
+            const filteredProducts = allProducts.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm)
+            );
+
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            filteredProducts.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                let priceHtml = product.originalPrice ? 
+                    `<div class="product-price">R$ ${product.price.toFixed(2)} <span style="text-decoration: line-through; color: #999;">R$ ${product.originalPrice.toFixed(2)}</span></div>` :
+                    `<div class="product-price">R$ ${product.price.toFixed(2)}</div>`;
+
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-description">${product.description}</div>
+                        ${priceHtml}
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            if (filteredProducts.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; padding: 3rem;">Nenhum produto encontrado</p>';
+            }
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const allProducts = [
+                ...products.cubanos,
+                ...products.dominicanos,
+                ...products.nicaraguenses,
+                ...products.acessorios,
+                ...products.ofertas
+            ];
+            
+            const product = allProducts.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+
+            updateCartCount();
+            showToast('✓ Produto adicionado ao carrinho!');
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        // Open cart modal
+        function openCartModal() {
+            renderCartItems();
+            document.getElementById('cartModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close cart modal
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Render cart items
+        function renderCartItems() {
+            const cartContainer = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<div style="text-align: center; padding: 3rem;"><i class="fas fa-shopping-cart" style="font-size: 4rem; color: #ddd; margin-bottom: 1rem;"></i><p style="color: #666;">Seu carrinho está vazio</p></div>';
+                document.getElementById('cartTotal').textContent = 'Total: R$ 0,00';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                html += `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">R$ ${item.price.toFixed(2)}</div>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span style="font-weight: 600; min-width: 30px; text-align: center;">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </div>
+                        <div class="remove-item" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartContainer.innerHTML = html;
+            document.getElementById('cartTotal').textContent = `Total: R$ ${total.toFixed(2)}`;
+        }
+
+        // Update quantity
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    renderCartItems();
+                    updateCartCount();
+                }
+            }
+        }
+
+        // Remove from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            renderCartItems();
+            updateCartCount();
+            showToast('Produto removido do carrinho');
+        }
+
+        // Toggle payment method
+        function togglePaymentMethod(method) {
+            document.getElementById('pixPayment').style.display = method === 'pix' ? 'block' : 'none';
+            document.getElementById('creditPayment').style.display = method === 'credit' ? 'block' : 'none';
+            document.getElementById('boletoPayment').style.display = method === 'boleto' ? 'block' : 'none';
+        }
+
+        // Copy PIX code
+        function copyPixCode() {
+            const pixCode = document.getElementById('pixCode').textContent;
+            navigator.clipboard.writeText(pixCode).then(() => {
+                showToast('Código PIX copiado!');
+            });
+        }
+
+        // Buscar CEP
+        function buscarCEP() {
+            const cep = document.getElementById('cep').value.replace(/\D/g, '');
+            
+            if (cep.length === 8) {
+                showToast('Buscando endereço...');
+                
+                fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.erro) {
+                            document.getElementById('address').value = data.logradouro;
+                            document.getElementById('neighborhood').value = data.bairro;
+                            document.getElementById('city').value = data.localidade;
+                            document.getElementById('state').value = data.uf;
+                            showToast('Endereço encontrado!');
+                        } else {
+                            showToast('CEP não encontrado');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar CEP:', error);
+                        showToast('Erro ao buscar CEP');
+                    });
+            }
+        }
+
+        // Finish order
+        function finishOrder() {
+            if (cart.length === 0) {
+                showToast('Seu carrinho está vazio!');
+                return;
+            }
+
+            // Validate delivery form
+            const required = ['fullName', 'email', 'phone', 'cep', 'address', 'number', 'neighborhood', 'city', 'state'];
+            for (let field of required) {
+                if (!document.getElementById(field).value) {
+                    showToast('Por favor, preencha todos os campos obrigatórios');
+                    return;
+                }
+            }
+
+            // Validate email format
+            const email = document.getElementById('email').value;
+            if (!email.includes('@') || !email.includes('.')) {
+                showToast('Por favor, insira um email válido');
+                return;
+            }
+
+            // Get payment method
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            
+            // Create order
+            const order = {
+                items: cart,
+                delivery: {
+                    name: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    cep: document.getElementById('cep').value,
+                    address: document.getElementById('address').value,
+                    number: document.getElementById('number').value,
+                    complement: document.getElementById('complement').value,
+                    neighborhood: document.getElementById('neighborhood').value,
+                    city: document.getElementById('city').value,
+                    state: document.getElementById('state').value,
+                    notes: document.getElementById('deliveryNotes').value
+                },
+                payment: paymentMethod,
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                date: new Date().toISOString(),
+                orderNumber: 'ORD' + Math.floor(Math.random() * 1000000)
+            };
+
+            // Save to localStorage (simulate database)
+            let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            orders.push(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+            
+            // Show success message
+            showToast(`✅ Pedido ${order.orderNumber} realizado com sucesso!`);
+            
+            // Clear cart
+            cart = [];
+            updateCartCount();
+            closeCartModal();
+            
+            // Reset form
+            document.getElementById('deliveryForm').reset();
+            
+            // Show order summary (in a real app, redirect to success page)
+            setTimeout(() => {
+                alert(`Pedido confirmado!\nNúmero: ${order.orderNumber}\nTotal: R$ ${order.total.toFixed(2)}\n\nVocê receberá a confirmação por email.`);
+            }, 500);
+        }
+
+        // Show login prompt
+        function showLoginPrompt() {
+            showToast('🔐 Faça login para acessar sua conta');
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('cartModal');
+            if (event.target === modal) {
+                closeCartModal();
+            }
+        }
+
+        // Enter key in search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchProducts();
+            }
+        });
+
+        // Initialize
+        loadProducts();
+        updateCartCount();
+    </script>
+</body>
+</html>
